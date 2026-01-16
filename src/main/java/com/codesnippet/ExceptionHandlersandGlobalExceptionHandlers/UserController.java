@@ -24,12 +24,12 @@ public class UserController {
 
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<?>  handleUserNotFoundException(UserNotFoundException userNotFoundException) {
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(userNotFoundException.getMessage());
-    }
+//    @ExceptionHandler(UserNotFoundException.class)
+//    public ResponseEntity<?>  handleUserNotFoundException(UserNotFoundException userNotFoundException) {
+//        return ResponseEntity
+//                .status(HttpStatus.NOT_FOUND)
+//                .body(userNotFoundException.getMessage());
+//    }
 
 
 
