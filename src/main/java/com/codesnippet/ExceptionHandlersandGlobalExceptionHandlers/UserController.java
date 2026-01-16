@@ -12,21 +12,25 @@ import java.time.LocalTime;
 public class UserController {
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUser(@PathVariable Integer id) {
-        try {
+    public String getUser(@PathVariable Integer id) {
+
             if (id == 0) {
                 throw new UserNotFoundException("user not found");
             }
-        }
-        catch (UserNotFoundException e) {
-            ResponseMessage responseMessage=new ResponseMessage(LocalTime.now(),e.getMessage(),"User Not Found");
-            return new ResponseEntity<>(responseMessage,HttpStatus.NOT_FOUND);
 
-        }
 
-     return new ResponseEntity<>("User Found", HttpStatus.OK);
+
+        return "user found";
 
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<?>  handleUserNotFoundException(UserNotFoundException userNotFoundException) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(userNotFoundException.getMessage());
+    }
+
 
 
 
